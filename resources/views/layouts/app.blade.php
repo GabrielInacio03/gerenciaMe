@@ -6,7 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <title>@yield('title')</title>
     <title>{{ config('app.name', 'GerenciaMe') }}</title>
 
     <!-- Scripts -->
@@ -14,73 +14,114 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-       
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">   
+   
     <!-- Bootstrap 5.1.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
 
-
     <style>
-        .modal{
-            width: 300px;
-        }
-        .modal-content{
-            width: 300px;
-        }
-        .list-group-item:hover{
-            background-color: rgb(59,57,57,0.164);
-        }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'montserrat';
+        background: #e3e9f7
+    }
+
+    .logo {
+        padding: 20px
+    }
+
+    nav ul {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 260px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #2b2626
+    }
+
+    nav ul li {
+        list-style: none
+    }
+
+    nav ul li a {
+        display: block;
+        font-family: 'montserrat';
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 17px;
+        color: #fff;
+        position: relative;
+        padding: 15px 0px 15px 25px;
+        transition: all 0.5s
+    }
+
+    nav ul li a:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        background: #e3e9f7;
+        border-radius: 40px 0 0 40px;
+        z-index: -1;
+        transition: all 1s
+    }
+
+    nav ul li a:hover {
+        color: #2b2626
+    }
+
+    nav ul li a:hover:before {
+        width: 95%
+    }
+
+    .wrapper {
+        margin-left: 260px
+    }
+
+    .section {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        text-align: center
+    }
+
+    .box-area h2 {
+        text-transform: uppercase;
+        font-size: 30px
+    }
     </style>
 </head>
-<body>
-    <div id="page-top">
-       <nav class="navbar navbar-light bg-light">
-           <div class="container-fluid">
-               <span class="navbar-brand mb-0 h1">{{ config('app.name', 'GerenciaMe') }}</span>
-               <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                   <span class="navbar-toggler-icon"></span>
-               </button>
-           </div>
-       </nav>     
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Test1</li>
-                <li class="list-group-item">Test2</li>
-                <li class="list-group-item">Test3</li>
-                <li class="list-group-item">Test4</li>
-                <li class="list-group-item">Test5</li>
-            </ul>
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-    </div>
-    </div>
-    </div>
-
-        <!-- 
-        {{ config('app.name', 'GerenciaMe') }}
-        -->
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+<body id="page-top">   
+    <nav>
+        <ul>
+            <li class="logo"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAh1BMVEVMr1D0QzYhlvP/wQf/////vgD0Nia63LtAq0Ww0vn6t7T/460AkfL+6+r6q6X3aV/0ST1SslZwv3Sv2rDs9uz7wL3D48T0PjEpmvP/xBBOq/b/zjv/45M1oPT/xxz/+OW32vv/6bD1VEhctl/zJg8zqDj94N7h7+Hd6/z/8tsAjPKcz/ro8/4BGhbPAAABo0lEQVR4nO3cR24CQRBA0bLdBBucwAlwxDnc/3wGeWOQWE61ZvT+BUpP1d3LjlLK8cnp2V7T9Y/K/wbDaLrzyfRiNSlKuVz2rxsHVhBGDJ+v1sLLvQRfHeGqqxLHyxRgLeHzRZz0U4C1hMNpnOassJYwJtH8K1pXeB5JwGrCICQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQk3Fk/qZct4eswqTjK6m1D+D7IKkrXI2x/hO2PsP0Rtj/C9kfY/uIwq4+NuZ+jrGKc1NfhhnDUyyr2kxpvCw+SIiQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQk3Cm86bhwFvOOCxfxPe60sHcbP3edFt4/RHnMuYl1hLOn9Y/lj3cZB7WGsHf/9Pcn+8/3vPk95gtni9uH1aRfSsqUbkvWwSAAAAAASUVORK5CYII=" width="89px" height="89px"></li>
+            <li><a href="#"><i class="fa fa-home"></i>&nbsp; Home</a></li>
+            <li><a href="#"><i class="fa fa-book"></i>&nbsp; Book</a></li>
+            <li><a href="#"><i class="fa fa-users"></i>&nbsp; Users</a></li>
+            <li><a href="#"><i class="fa fa-picture-o"></i>&nbsp; Pictures</a></li>
+            <li><a href="#"><i class="fa fa-phone"></i>&nbsp; Contact</a></li>
+        </ul>
+    </nav>
+    <div class="wrapper">
+    <main class="py-4">
+        @yield('content')    
+    </main>
+    </div>   
+    <!-- 
+    {{ config('app.name', 'GerenciaMe') }}
+     
+    -->
+    
+   
 </body>
  <!-- Bootstrap core JS-->
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>  
+
+
 </html>

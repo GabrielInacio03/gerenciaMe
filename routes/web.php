@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Auth::routes();
+Route::get('/Restrito/default', function (){
+    return view('/Restrito/default');
+})->middleware('auth');
+//Route::get('/default', 'HomeController@index')->name('home');
+//Route::get('/', [EventController::class, 'index']);

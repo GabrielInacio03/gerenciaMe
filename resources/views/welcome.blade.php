@@ -17,12 +17,7 @@
        
         <!-- Style -->
         <style>
-            .navbar{
-                background: rgba(0,91,224,1);                
-            }
-            header{
-                background: rgba(0,212,255,1);
-            }
+            
             .feature{
                 width: 60px;
                 height: 60px;
@@ -38,21 +33,30 @@
     </head>
     <body>
         <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark ">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
             <div class="container px-5 ">
                 <a class="navbar-brand" href="#!">GerenciaMe</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>                      
-                        <li class="nav-item"><a class="nav-link" href="#!">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Cadastrar</a></li>
-                    </ul>
+                    @if(Route::has('login'))
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            @auth
+                                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url('/Restrito/default') }}">Home</a></li>
+                            @else
+                                <li class="nav-item"><a class="nav-link" href="{{ url('login') }}">Login</a></li>
+
+                                @if(Route::has('register'))
+                                
+                                <li class="nav-item"><a class="nav-link" href="{{ url('register') }}">Cadastrar</a></li>
+                                @endif
+                            @endauth
+                        </ul>
+                    @endif
                 </div>
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-primary py-5">
+        <header class="bg-dark py-5">
             <div class="container px-5">
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-6">
@@ -60,7 +64,7 @@
                             <h1 class="display-5 fw-bolder text-white mb-2">Gerenciador de Cartão de Crédito</h1>
                             <p class="lead text-white-50 mb-4">Venha conhecer nossa plataforma de gerenciamento de cartão de crédito e nunca mais se perder nas suas contas.</p>
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                                <a class="btn btn-light btn-lg px-4 me-sm-3 " href="#features">Começar</a>                                
+                                <a class="btn btn-light btn-lg px-4 me-sm-3 " href="{{ url('login') }}">Começar</a>                                
                             </div>
                         </div>
                     </div>

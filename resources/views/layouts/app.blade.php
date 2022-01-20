@@ -17,111 +17,64 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">   
    
     <!-- Bootstrap 5.1.3 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-
-    <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'montserrat';
-        background: #e3e9f7
-    }
-
-    .logo {
-        padding: 20px
-    }
-
-    nav ul {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        width: 260px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #2b2626
-    }
-
-    nav ul li {
-        list-style: none
-    }
-
-    nav ul li a {
-        display: block;
-        font-family: 'montserrat';
-        text-decoration: none;
-        text-transform: uppercase;
-        font-size: 17px;
-        color: #fff;
-        position: relative;
-        padding: 15px 0px 15px 25px;
-        transition: all 0.5s
-    }
-
-    nav ul li a:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%;
-        background: #e3e9f7;
-        border-radius: 40px 0 0 40px;
-        z-index: -1;
-        transition: all 1s
-    }
-
-    nav ul li a:hover {
-        color: #2b2626
-    }
-
-    nav ul li a:hover:before {
-        width: 95%
-    }
-
-    .wrapper {
-        margin-left: 260px
-    }
-
-    .section {
-        display: grid;
-        place-items: center;
-        min-height: 100vh;
-        text-align: center
-    }
-
-    .box-area h2 {
-        text-transform: uppercase;
-        font-size: 30px
-    }
-    </style>
-</head>
-<body id="page-top">   
-    <nav>
-        <ul>
-            <li class="logo"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAh1BMVEVMr1D0QzYhlvP/wQf/////vgD0Nia63LtAq0Ww0vn6t7T/460AkfL+6+r6q6X3aV/0ST1SslZwv3Sv2rDs9uz7wL3D48T0PjEpmvP/xBBOq/b/zjv/45M1oPT/xxz/+OW32vv/6bD1VEhctl/zJg8zqDj94N7h7+Hd6/z/8tsAjPKcz/ro8/4BGhbPAAABo0lEQVR4nO3cR24CQRBA0bLdBBucwAlwxDnc/3wGeWOQWE61ZvT+BUpP1d3LjlLK8cnp2V7T9Y/K/wbDaLrzyfRiNSlKuVz2rxsHVhBGDJ+v1sLLvQRfHeGqqxLHyxRgLeHzRZz0U4C1hMNpnOassJYwJtH8K1pXeB5JwGrCICQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQk3Fk/qZct4eswqTjK6m1D+D7IKkrXI2x/hO2PsP0Rtj/C9kfY/uIwq4+NuZ+jrGKc1NfhhnDUyyr2kxpvCw+SIiQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQk3Cm86bhwFvOOCxfxPe60sHcbP3edFt4/RHnMuYl1hLOn9Y/lj3cZB7WGsHf/9Pcn+8/3vPk95gtni9uH1aRfSsqUbkvWwSAAAAAASUVORK5CYII=" width="89px" height="89px"></li>
-            <li><a href="#"><i class="fa fa-home"></i>&nbsp; Home</a></li>
-            <li><a href="#"><i class="fa fa-book"></i>&nbsp; Book</a></li>
-            <li><a href="#"><i class="fa fa-users"></i>&nbsp; Users</a></li>
-            <li><a href="#"><i class="fa fa-picture-o"></i>&nbsp; Pictures</a></li>
-            <li><a href="#"><i class="fa fa-phone"></i>&nbsp; Contact</a></li>
-        </ul>
+    <!-- CSS3 -->
+    <link rel="stylesheet" href="{{ URL::asset('css/default.css') }}">
+   <!-- {{ config('app.name', 'GerenciaMe') }} -->
+</head id="page-top">
+<body>   
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">{{ config('app.name', 'GerenciaMe') }}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cartão</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Receitas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Despesas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Conta</a>
+                    </li>                    
+                </ul>
+                @auth                  
+                    <form class="d-flex" action="/" method="GET">
+                        <span>ADMINISTRADOR</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                                                
+                        @csrf
+                        <span>
+                            <a href="/logout"
+                            style="color: #FFF;"
+                            onclick="event.preventDefault();
+                            this.closest('form').submit();">Sair</a>
+                        </span>                        
+                    </form>
+                @endauth
+            </div>
+        </div>
     </nav>
-    <div class="wrapper">
-    <main class="py-4">
-        @yield('content')    
-    </main>
-    </div>   
-    <!-- 
-    {{ config('app.name', 'GerenciaMe') }}
-     
-    -->
+    <div class="container mt-5">
+        @yield('content') 
+    </div>
     
-   
+    </main>    
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </body>
- <!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>  
-
+ 
 
 </html>

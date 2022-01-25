@@ -1,0 +1,31 @@
+/*
+ !important -> vai considerar aquele valor o mais importante da cascata
+*/
+:root{
+    --dark-blue: #363F5F;
+    --green: #49AA26;
+    --green-light: #3dd705;
+}
+*{ /*seletor univrsal*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*medida da caixa*/
+}
+html{
+    font-size: 93.75%; /*15px */
+}
+body{
+    background: #f0f2f5;
+    font-family: 'Poppins', sans-serif;
+}
+/* HEADER ==============================*/
+header{
+    background: #356fcc;
+    padding: 2rem 1rem 10rem; /*topo direita baixo esquerda*/
+    text-align: left;
+}
+h1#logo a{
+    color: #fff;
+    font-weight: 100; /*peso da font*/
+    font-size: 3rem;
+}

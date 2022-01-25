@@ -28,50 +28,15 @@
    <!-- {{ config('app.name', 'GerenciaMe') }} -->
 </head id="page-top">
 <body>   
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">{{ config('app.name', 'GerenciaMe') }}</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Cartão</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Receitas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Despesas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Conta</a>
-                    </li>                    
-                </ul>
-                @auth                  
-                    <form class="d-flex" action="/" method="GET">
-                        <span>ADMINISTRADOR</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                                                
-                        @csrf
-                        <span>
-                            <a href="/logout"
-                            style="color: #FFF;"
-                            onclick="event.preventDefault();
-                            this.closest('form').submit();">Sair</a>
-                        </span>                        
-                    </form>
-                @endauth
-            </div>
-        </div>
-    </nav>
-    <div class="container mt-5">
+    <header>                
+        <h1 id="logo">                
+            <a class="navbar-brand" href="#">Gerencia<sup>Me</sup></a>
+        </h1>            
+    </header>
+    <main class="container">
         @yield('content') 
-    </div>
-    
-    </main>    
+    </main>
+   
     <!-- Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </body>

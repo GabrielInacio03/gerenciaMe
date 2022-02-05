@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cartao;
+use App\Repositories\Contracts\ICartaoRepository;
 use Illuminate\Http\Request;
 
 class CartaoController extends Controller
 {
+    public ICartaoRepository $cartao;
+
+    public function __construct(
+        ICartaoRepository $cartao
+    )
+    {
+        $this->cartao = $cartao;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,7 @@ class CartaoController extends Controller
      */
     public function index()
     {
-        $cartaos = Cartao::all();
+        $cartaos = $this->cartao->all();
 
         return view('/Restrito/cartaos/index', compact('cartaos'));      
     }
@@ -43,8 +52,8 @@ class CartaoController extends Controller
         $validacao->nome = $request->nome;
         $validacao->userId = $user->id;
 
-        $validacao->save();
-   
+        $this->cartao->store($validacao);
+       
         return redirect('/Restrito/cartaos')->with('success', 'Cartão criado com sucesso');
     }
 
@@ -67,7 +76,7 @@ class CartaoController extends Controller
      */
     public function edit($id)
     {
-        $cartao = Cartao::findOrFail($id);
+        $cartao = $this->cartao->getById($id);
 
         return view('/Restrito/cartaos/edit', compact('cartao'));
     }
@@ -82,10 +91,10 @@ class CartaoController extends Controller
     public function update(Request $request, $id)
     {
         //$user = auth()->user();  
-        $validacao = Cartao::findOrFail($id);
+        $validacao = $this->cartao->getById($id);
         $validacao->nome = $request->input('nome');    
 
-        $validacao->save();
+        $this->cartao->update($validacao);
         
         return redirect('/Restrito/cartaos')->with('success', 'Cartão editado com sucesso');
     }
@@ -98,9 +107,8 @@ class CartaoController extends Controller
      */
     public function destroy($id)
     {
-        $cartao = Cartao::findOrFail($id);
-        $cartao->delete();
-
+        $cartao = $this->cartao->getById($id);;
+        $this->cartao->delete($cartao);
         return redirect('/Restrito/cartaos')->with('success', 'Cartão excluido com sucesso');
     }
 }

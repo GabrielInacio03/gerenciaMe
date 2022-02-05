@@ -11,3 +11,4 @@ Route::get('/Restrito/default', function (){
 
 
 Route::resource('/Restrito/cartaos', 'CartaoController')->middleware('auth');
+Route::resource('/Restrito/despesas', 'DespesaController')->middleware('auth');

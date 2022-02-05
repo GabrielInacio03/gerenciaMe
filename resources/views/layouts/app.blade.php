@@ -74,7 +74,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link" aria-current="page">
+                            <a href="{{ URL::asset('/Restrito/despesas') }}" class="nav-link" aria-current="page">
                                 <span data-feather="arrow-down-circle"></span>
                                 Despesas
                             </a>

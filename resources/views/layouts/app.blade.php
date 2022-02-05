@@ -68,7 +68,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link" aria-current="page">
+                            <a href="{{ URL::asset('/Restrito/cartaos') }}" class="nav-link" aria-current="page">
                                 <span data-feather="credit-card"></span>
                                 Cartões
                             </a>

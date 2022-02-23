@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Despesa;
 use App\Repositories\Contracts\ICartaoRepository;
 use App\Repositories\Contracts\IDespesaRepository;
 use Illuminate\Http\Request;
@@ -51,7 +52,14 @@ class DespesaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validacao = new Despesa();
+        $validacao->descricao = $request->descricao;
+        $validacao->valor = $request->valor;
+        $validacao->cartaoId = $request->cartao_id;
+
+        $this->despesa->store($validacao);
+
+        return redirect('/Restrito/despesas')->with('success', 'despesa criada com sucesso');
     }
 
     /**

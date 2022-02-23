@@ -25,7 +25,7 @@
                 <tr>
                     <td class="col-md-1">{{$despesa->id}}</td>
                     <td class="col-md-7">{{$despesa->descricao}}</td>
-                    <td class="col-md-2">{{$despesa->valor}}</td>
+                    <td class="col-md-2">- R${{$despesa->valor}}</td>
                     <td class="col-md-2">
                         <a href="{{ route('despesas.edit', $despesa->id) }}" class="btn btn-primary mb-1">
                             <span data-feather="edit"></span>

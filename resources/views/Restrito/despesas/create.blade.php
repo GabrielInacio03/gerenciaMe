@@ -16,15 +16,15 @@
     @endif
     </div>
     <div class="card-body">
-        <form class="row g-3" method="post" action="{{ route('cartaos.store') }}">
+        <form class="row g-3" method="post" action="{{ route('despesas.store') }}">
         @csrf
             <div class="col-md-6">
                 <label for="txtNome" class="form-label">Descrição:</label>
-                <input type="text" class="form-control" id="txtNome" name="descricao">
+                <input type="text" class="form-control" id="txtDescricao" name="descricao">
             </div>      
             <div class="col-md-6">
                 <label for="txtValor" class="form-label">Valor:</label>
-                <input type="number" class="form-control" id="txtValor" name="valor">
+                <input type="number" class="form-control" id="txtValor" name="valor" step="0.010">
             </div>    
             <div class="col-md-4">
                 <label for="txtCartao" class="form-label">Cartão</label>

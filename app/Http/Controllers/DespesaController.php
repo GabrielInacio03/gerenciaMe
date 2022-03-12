@@ -81,7 +81,10 @@ class DespesaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $despesa = $this->despesa->getById($id);
+        $cartaos = $this->cartao->all();
+
+        return view('/Restrito/despesas/edit', compact('despesa', 'cartaos'));
     }
 
     /**
@@ -93,7 +96,14 @@ class DespesaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validacao = $this->despesa->getById($id);
+        $validacao->descricao = $request->input('descricao');
+        $validacao->valor = $request->input('valor');
+        $validacao->cartaoId = $request->input('cartao_id');
+
+        $this->despesa->update($validacao);
+
+        return redirect('/Restrito/despesas')->with('success', 'Despesa editada com sucesso');
     }
 
     /**
@@ -104,6 +114,9 @@ class DespesaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $despesa = $this->despesa->getById($id);
+        $this->despesa->delete($despesa);
+
+        return redirect('/Restrito/despesas')->with('success','Despesa excluida com sucesso');
     }
 }

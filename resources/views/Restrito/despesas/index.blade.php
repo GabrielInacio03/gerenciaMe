@@ -33,6 +33,9 @@
                         <form action="{{ route('despesas.destroy', $despesa->id) }}" method="post">
                             @csrf
                             @method('DELETE')
+                            <button class="btn btn-danger" type="submit">
+                                <span data-feather="trash-2"></span>
+                            </button>
                         </form>
                     </td>
                 </tr>

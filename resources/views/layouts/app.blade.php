@@ -80,7 +80,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link" aria-current="page">
+                            <a href="{{ URL::asset('/Restrito/receitas') }}" class="nav-link" aria-current="page">
                                 <span data-feather="arrow-up-circle"></span>
                                 Receitas
                             </a>

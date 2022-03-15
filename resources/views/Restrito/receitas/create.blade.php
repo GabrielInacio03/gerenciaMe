@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Editar Despesa</h1>   
+    <h1 class="h2">Criar Nova Receita</h1>    
 </div>
 <div class="card">
     <div class="card-head">
@@ -16,23 +16,22 @@
     @endif
     </div>
     <div class="card-body">
-        <form class="row g-3" method="post" action="{{ route('despesas.update', $despesa->id) }}">
+        <form class="row g-3" method="post" action="{{ route('receitas.store') }}">
         @csrf
-        @method('PATCH')
             <div class="col-md-6">
-                <label for="txtDescricao" class="form-label">Descrição:</label>
-                <input type="text" class="form-control" id="txtDescricao" name="descricao" value="{{ $despesa->descricao }}">
+                <label for="txtNome" class="form-label">Descrição:</label>
+                <input type="text" class="form-control" id="txtDescricao" name="descricao">
             </div>      
             <div class="col-md-6">
                 <label for="txtValor" class="form-label">Valor:</label>
-                <input type="number" class="form-control" id="txtValor" name="valor" step="0.010" value="{{ $despesa->valor }}">
+                <input type="number" class="form-control" id="txtValor" name="valor" step="0.010">
             </div>    
             <div class="col-md-4">
                 <label for="txtCartao" class="form-label">Cartão</label>
                 <select class="form-control" name="cartao_id" required>
-                    <option value="0">--- Selecione uma opção ---</option>                   
-                    @foreach($cartaos as $cartao)                        
-                        <option selected value="{{ $cartao->id }}">{{ $cartao->nome }}</option>
+                    <option value="0">--- Selecione uma opção ---</option>
+                    @foreach($cartaos as $cartao)
+                        <option value="{{ $cartao->id }}">{{ $cartao->nome }}</option>
                     @endforeach
                 </select>
             </div>

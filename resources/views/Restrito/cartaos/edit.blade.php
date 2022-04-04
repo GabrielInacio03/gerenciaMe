@@ -5,14 +5,10 @@
 </div>
 <div class="card">
     <div class="card-head">
-    @if ($errors->any())
-      <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-      </div><br />
+    @if(session()->get('errors'))
+        <div class="alert alert-danger mt-1">
+            {{ session()->get('errors') }}  
+        </div><br />
     @endif
     </div>
     <div class="card-body">

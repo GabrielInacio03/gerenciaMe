@@ -9,6 +9,6 @@ class TipoReceita extends Model
     protected $table = 'tipo_receitas';
 
     protected $fillable = [
-        'descricao',        
+        'nome',        
     ];  
 }

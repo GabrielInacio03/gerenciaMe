@@ -15,7 +15,8 @@
             <thead>
                 <tr>
                     <th class="col-md-1">#</th>
-                    <th class="col-md-7">Descrição</th>
+                    <th class="col-md-4">Descrição</th>
+                    <th class="col-md-3">Tipo</th>
                     <th class="col-md-2">Valor</th>
                     <th class="col-md-2">Ações</th>
                 </tr>            
@@ -24,7 +25,8 @@
                 @foreach($despesas as $despesa)                              
                 <tr>
                     <td class="col-md-1">{{$despesa->id}}</td>
-                    <td class="col-md-7">{{$despesa->descricao}}</td>
+                    <td class="col-md-4">{{$despesa->nome}}</td>
+                    <td class="col-md-3">{{$despesa->tipo}}</td>
                     <td class="col-md-2">- R${{$despesa->valor}}</td>
                     <td class="col-md-2">
                         <a href="{{ route('despesas.edit', $despesa->id) }}" class="btn btn-primary mb-1">

@@ -1,13 +1,13 @@
 <?php
 use App\Http\Controllers\CartaoController;
-
+use App\Repositories\Contracts\ITipoDespesaRepository;
+use Illuminate\Http\Request;
 Route::get('/', function () {
     return view('welcome');
 });
 Auth::routes();
-Route::get('/Restrito/default', function (){
-    return view('/Restrito/default');
-})->middleware('auth');
+Route::get('/Restrito/default', 'HomeController@index')->middleware('auth');
+
 
 
 Route::resource('/Restrito/cartaos', 'CartaoController')->middleware('auth');

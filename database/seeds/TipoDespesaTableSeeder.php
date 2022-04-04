@@ -13,34 +13,34 @@ class TipoDespesaTableSeeder extends Seeder
     public function run()
     {
         TipoDespesa::create([
-            'descricao' => 'Aluguel',            
+            'nome' => 'Aluguel',            
         ]);
         TipoDespesa::create([
-            'descricao' => 'Impostos Fixos',
+            'nome' => 'Impostos Fixos',
         ]);
         TipoDespesa::create([
-            'descricao' => 'Folha de Pagamento',
+            'nome' => 'Folha de Pagamento',
         ]);
         TipoDespesa::create([
-            'descricao' => 'Taxas Bancárias',
+            'nome' => 'Taxas Bancárias',
         ]);
         TipoDespesa::create([
-            'descricao' => 'Seguro de Vida',
+            'nome' => 'Seguro de Vida',
         ]);
         TipoDespesa::create([
-            'descricao' => 'Alimentação',
+            'nome' => 'Alimentação',
         ]);
         TipoDespesa::create([
-            'descricao' => 'Energia Elétrica',
+            'nome' => 'Energia Elétrica',
         ]);
         TipoDespesa::create([
-            'descricao' => 'Aguá e Esgoto',
+            'nome' => 'Aguá e Esgoto',
         ]);
         TipoDespesa::create([
-            'descricao' => 'Internet',
+            'nome' => 'Internet',
         ]);
         TipoDespesa::create([
-            'descricao' => 'Outros',
+            'nome' => 'Outros',
         ]);
     }
 }

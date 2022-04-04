@@ -9,6 +9,6 @@ class TipoDespesa extends Model
     protected $table = 'tipo_despesas';
 
     protected $fillable = [
-        'descricao'        
+        'nome'        
     ];  
 }

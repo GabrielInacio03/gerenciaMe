@@ -58,6 +58,7 @@
                             @endif
                         @endauth
                     @endif
+                    
                     </nav>
                 </div>
             </header>

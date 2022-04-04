@@ -14,10 +14,10 @@ class TipoReceitaSeeder extends Seeder
     public function run()
     {
         TipoReceita::create([
-            'descricao' => 'Renda Variável',            
+            'nome' => 'Renda Variável',            
         ]);
         TipoReceita::create([
-            'descricao' => 'Renda Fixa',            
+            'nome' => 'Renda Fixa',            
         ]);
     }
 }

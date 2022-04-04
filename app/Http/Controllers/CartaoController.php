@@ -52,9 +52,17 @@ class CartaoController extends Controller
         $validacao->nome = $request->nome;
         $validacao->userId = $user->id;
 
-        $this->cartao->store($validacao);
-       
-        return redirect('/Restrito/cartaos')->with('success', 'Cartão criado com sucesso');
+        //validação
+        if(strlen($validacao->nome) < 2)
+        {
+            return redirect('/Restrito/cartaos/create')->with('errors', 'O número de caracteres é insuficiente');
+        }
+        else
+        {
+            $this->cartao->store($validacao);
+            return redirect('/Restrito/cartaos')->with('success', 'Cartão criado com sucesso');
+        }
+
     }
 
     /**
@@ -94,9 +102,15 @@ class CartaoController extends Controller
         $validacao = $this->cartao->getById($id);
         $validacao->nome = $request->input('nome');    
 
-        $this->cartao->update($validacao);
-        
-        return redirect('/Restrito/cartaos')->with('success', 'Cartão editado com sucesso');
+        if(strlen($validacao->nome) < 2)
+        {
+            return redirect('/Restrito/cartaos/'.$id.'/edit')->with('errors', 'O número de caracteres é insuficiente');
+        }
+        else
+        {
+            $this->cartao->update($validacao);        
+            return redirect('/Restrito/cartaos')->with('success', 'Cartão editado com sucesso');
+        }        
     }
 
     /**

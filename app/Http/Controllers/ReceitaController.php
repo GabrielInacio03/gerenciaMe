@@ -5,27 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\Receita;
 use App\Repositories\Contracts\ICartaoRepository;
 use App\Repositories\Contracts\IReceitaRepository;
+use App\Repositories\Contracts\ITipoReceitaRepository;
 use Illuminate\Http\Request;
 
 class ReceitaController extends Controller
 {
     public IReceitaRepository $receita;
     public ICartaoRepository $cartao;
+    public ITipoReceitaRepository $tipo;
 
     public function __construct(
         IReceitaRepository $receita,
-        ICartaoRepository $cartao
+        ICartaoRepository $cartao,
+        ITipoReceitaRepository $tipo
     )
     {
         $this->receita = $receita;
         $this->cartao = $cartao;
+        $this->tipo = $tipo;
     }
 
     public function index()
     {
         $receitas = $this->receita->all();
+        $tipos = $this->tipo->all();
 
-        return view('/Restrito/receitas/index', compact('receitas'));
+        return view('/Restrito/receitas/index', compact('receitas','tipos'));
     }
 
     /**
@@ -36,8 +41,9 @@ class ReceitaController extends Controller
     public function create()
     {
         $cartaos = $this->cartao->all();
+        $tipos = $this->tipo->all();
 
-        return view('/Restrito/receitas/create', compact('cartaos'));
+        return view('/Restrito/receitas/create', compact('cartaos','tipos'));
     }
 
     /**
@@ -51,11 +57,19 @@ class ReceitaController extends Controller
         $validacao = new Receita();
         $validacao->descricao = $request->descricao;
         $validacao->valor = $request->valor;
+        $validacao->tipo = $request->tipo;
         $validacao->cartaoId = $request->cartao_id;
 
-        $this->receita->store($validacao);
-
-        return redirect('/Restrito/receitas')->with('success', 'receita criada com sucesso');
+        
+        if(strlen($validacao->descricao) < 1 || $validacao->tipo == 0 || $validacao->cartaoId == 0)
+        {
+            return redirect('/Restrito/receitas/create')->with('errors', 'Algum campo não foi preenchido corretamente');
+        }
+        else
+        {
+            $this->receita->store($validacao);
+            return redirect('/Restrito/receitas')->with('success', 'receita criada com sucesso');
+        }
     }
 
     /**
@@ -79,8 +93,9 @@ class ReceitaController extends Controller
     {
         $receita = $this->receita->getById($id);
         $cartaos = $this->cartao->all();
+        $tipos = $this->tipo->all();
 
-        return view('/Restrito/receitas/edit', compact('receita', 'cartaos'));
+        return view('/Restrito/receitas/edit', compact('receita', 'cartaos','tipos'));
     }
 
     /**
@@ -95,11 +110,18 @@ class ReceitaController extends Controller
         $validacao = $this->receita->getById($id);
         $validacao->descricao = $request->input('descricao');
         $validacao->valor = $request->input('valor');
+        $validacao->tipo = $request->input('tipo');
         $validacao->cartaoId = $request->input('cartao_id');
 
-        $this->receita->update($validacao);
-
-        return redirect('/Restrito/receitas')->with('success', 'Receita editada com sucesso');
+        if(strlen($validacao->descricao) < 1 || $validacao->tipo == 0 || $validacao->cartaoId == 0)
+        {
+            return redirect('/Restrito/receitas/'.$id.'/edit')->with('errors', 'Algum campo não foi preenchido corretamente');
+        }
+        else
+        {
+            $this->receita->update($validacao);
+            return redirect('/Restrito/receitas')->with('success', 'Receita editada com sucesso');
+        }
     }
 
     /**

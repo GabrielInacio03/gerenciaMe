@@ -28,6 +28,15 @@
                 <input type="number" class="form-control" id="txtValor" name="valor" step="0.010" value="{{ $receita->valor }}">
             </div>    
             <div class="col-md-4">
+                <label for="txtTipo" class="form-label">Tipo</label>
+                <select class="form-control" name="tipo" required>
+                    <option value="0">--- Selecione uma opção ---</option>
+                    @foreach($tipos as $tipo)
+                        <option selected value="{{ $tipo->id }}">{{ $tipo->nome }}</option>
+                    @endforeach
+                </select>
+            </div>  
+            <div class="col-md-4">
                 <label for="txtCartao" class="form-label">Cartão</label>
                 <select class="form-control" name="cartao_id" required>
                     <option value="0">--- Selecione uma opção ---</option>                   

@@ -25,18 +25,18 @@
                 @foreach($despesas as $despesa)                              
                 <tr>
                     <td class="col-md-1">{{$despesa->id}}</td>
-                    <td class="col-md-4">{{$despesa->nome}}</td>
-                    <td class="col-md-3">{{$despesa->tipo}}</td>
+                    <td class="col-md-4">{{$despesa->descricao}}</td>
+                    <td class="col-md-3">{{$despesa->tipoDespesa->nome}}</td>
                     <td class="col-md-2">- R${{$despesa->valor}}</td>
                     <td class="col-md-2">
                         <a href="{{ route('despesas.edit', $despesa->id) }}" class="btn btn-primary mb-1">
-                            <span data-feather="edit"></span>
+                            <i class="bi bi-pencil-square"></i>
                         </a>                
                         <form action="{{ route('despesas.destroy', $despesa->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" type="submit">
-                                <span data-feather="trash-2"></span>
+                                <i class="bi bi-trash"></i>
                             </button>
                         </form>
                     </td>

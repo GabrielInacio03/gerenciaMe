@@ -10,21 +10,32 @@
         <hr>
         <div class="inbox-wid">
             <div class="inbox-item">
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <canvas id="myChart" width="150" height="150"></canvas>
             </div>
         </div>
     </div>
 </div>
+@php
+    if(count($buscas) > 0)
+    {
+        $tipos = array_values($buscas);
+
+        $lista = [];
+        foreach($tipos as $tipo){
+            $lista[] = $tipo;
+        }
+    }
+@endphp
 <script src="{{ asset('chart.js/chart.js') }}"></script>
 <script>
   var ctx = document.getElementById('myChart').getContext('2d');
   const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: [ {{ implode(",", array_keys($buscas)) }} ],
+        labels: [ {!! implode(",", $lista) !!} ],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: '# Gastos por Tipos',
+            data: [ {{ implode(",", array_keys($buscas)) }} ],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

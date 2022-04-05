@@ -24,7 +24,7 @@
                 <input type="number" class="form-control" id="txtValor" name="valor" step="0.010" value="{{ $despesa->valor }}">
             </div>    
             <div class="col-md-4">
-                <label for="txtCartao" class="form-label">Tipo</label>
+                <label for="txtTipo" class="form-label">Tipo</label>
                 <select class="form-control" name="tipo" required>
                     <option value="0">--- Selecione uma opção ---</option>
                     @foreach($tipos as $tipo)

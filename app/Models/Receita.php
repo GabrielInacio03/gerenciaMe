@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Cartao;
-use App\Models\TipoDespesa;
+use App\Models\TipoReceita;
 
 class Receita extends Model
 {
@@ -21,8 +21,8 @@ class Receita extends Model
     {
         return $this->belongsTo(Cartao::class, 'cartaoId');
     }  
-    public function tipo()
+    public function tipoReceita()
     {
-        return $this->belongsTo(TipoDespesa::class, 'tipo');
+        return $this->belongsTo(TipoReceita::class, 'tipo');
     } 
 }

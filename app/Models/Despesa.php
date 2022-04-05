@@ -21,7 +21,7 @@ class Despesa extends Model
     {
         return $this->belongsTo(Cartao::class, 'cartaoId');
     }  
-    public function tipo()
+    public function tipoDespesa()
     {
         return $this->belongsTo(TipoDespesa::class, 'tipo');
     }

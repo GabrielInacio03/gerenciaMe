@@ -15,7 +15,8 @@
             <thead>
                 <tr>
                     <th class="col-md-1">#</th>
-                    <th class="col-md-7">Descrição</th>
+                    <th class="col-md-4">Descrição</th>
+                    <th class="col-md-3">Tipo</th>
                     <th class="col-md-2">Valor</th>
                     <th class="col-md-2">Ações</th>
                 </tr>            
@@ -24,17 +25,18 @@
                 @foreach($receitas as $receita)                              
                 <tr>
                     <td class="col-md-1">{{$receita->id}}</td>
-                    <td class="col-md-7">{{$receita->descricao}}</td>
-                    <td class="col-md-2">- R${{$receita->valor}}</td>
+                    <td class="col-md-4">{{$receita->descricao}}</td>
+                    <td class="col-md-3">{{$receita->tipoReceita->nome}}</td>
+                    <td class="col-md-2">R${{$receita->valor}}</td>
                     <td class="col-md-2">
                         <a href="{{ route('receitas.edit', $receita->id) }}" class="btn btn-primary mb-1">
-                            <span data-feather="edit"></span>
+                            <i class="bi bi-pencil-square"></i>
                         </a>                
                         <form action="{{ route('receitas.destroy', $receita->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" type="submit">
-                                <span data-feather="trash-2"></span>
+                                <i class="bi bi-trash"></i>
                             </button>
                         </form>
                     </td>

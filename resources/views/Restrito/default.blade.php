@@ -4,13 +4,30 @@
     <h1 class="h2">Dashboard</h1>    
     <p> </p>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        <div id="container-search" class="col-md-12">
+            <h3>Filtrar por suas despesas</h3>
+            <form action="/" method="GET">
+                <input type="text" id="search" name="search" class="form-control" placeholder="Procure um Evento">
+            </form>
+        </div>
+        <div class="row cabecalho">
+            <div class="col-md-12 text-left">
+                <p>buscando por: {{ $search }}</p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<br>
 <div class="card m-b-20">
     <div class="card-body">
         <h4 class="mt-0 header-title mb-3">Gráfico</h4>
         <hr>
         <div class="inbox-wid">
             <div class="inbox-item">
-            <canvas id="myChart" width="150" height="150"></canvas>
+            <canvas id="myChart" width="59" height="50"></canvas>
             </div>
         </div>
     </div>

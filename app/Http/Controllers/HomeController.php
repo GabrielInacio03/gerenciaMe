@@ -30,6 +30,25 @@ class HomeController extends Controller
         $td = $this->tipoDespesa->all();   
         $tipos = [];
 
+
+        //search
+        $search = request('search');
+        if($search){
+            $td = TipoDespesa::where(
+                [
+                    'nome',
+                    '=',
+                    $search
+                ]
+            );
+            //$events = Event::where([
+            //    ['titulo', 'like', '%'.$search.'%']
+            //])->get();          
+        }else {
+            $td = TipoDespesa::all();
+        }
+
+
         if($td->count()){
             $dados_tipo = [];
             $i = 0;
@@ -45,7 +64,7 @@ class HomeController extends Controller
         $buscas = $tipos;
     
         //dd($buscas);
-        return view('/Restrito/default', compact("buscas"));
+        return view('/Restrito/default', compact("buscas","search"));
     }
     public function grafico()
     {

@@ -3,21 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\TipoDespesa;
+use App\Models\Despesa;
+use App\Models\Receita;
+use DateTime;
+
 use App\Repositories\Contracts\ITipoDespesaRepository;
+use App\Repositories\Contracts\IDespesaRepository;
+use App\Repositories\Contracts\IReceitaRepository;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public ITipoDespesaRepository $tipoDespesa;
+    public IDespesaRepository $despesa;
+    public IReceitaRepository $receita;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(ITipoDespesaRepository $tipoDespesa)
+    public function __construct(
+        ITipoDespesaRepository $tipoDespesa,
+        IDespesaRepository $despesa,
+        IReceitaRepository $receita
+    )
     {
         $this->middleware('auth');
         $this->tipoDespesa = $tipoDespesa;
+        $this->despesa = $despesa;
+        $this->receita = $receita;
     }
 
     /**
@@ -25,49 +39,47 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {               
-        $td = $this->tipoDespesa->all();   
+    public function index(Request $request)
+    {
+        $search = $request->get('search');
         $tipos = [];
+        $valores = [];
+        $receitaValida= [];
+        $somaReceita = 0;
+        $somaDespesa = 0;
 
+        $tipos[0] = 'Receita';
+        $tipos[1] = "Despesa";
 
-        //search
-        $search = request('search');
+        $receitas = Receita::whereYear(
+            'created_at','=', date('Y', strtotime($search)))
+            ->whereMonth('created_at','=', date('m', strtotime($search)))
+            ->get();
+        $despesas = Despesa::whereYear(
+            'created_at','=', date('Y', strtotime($search)))
+            ->whereMonth('created_at','=', date('m', strtotime($search)))
+            ->get();
+
+        foreach($receitas as $item){
+            $somaReceita += $item['valor'];
+        }
+        foreach($despesas as $item){
+            $somaDespesa += $item['valor'];
+        }
+
+        $valores[0] = $somaReceita;
+        $valores[1] = $somaDespesa;
+
         if($search){
-            $td = TipoDespesa::where(
-                [
-                    'nome',
-                    '=',
-                    $search
-                ]
-            );
-            //$events = Event::where([
-            //    ['titulo', 'like', '%'.$search.'%']
-            //])->get();          
-        }else {
-            $td = TipoDespesa::all();
+            //dd($valores);
         }
+        $buscas = $valores;
 
-
-        if($td->count()){
-            $dados_tipo = [];
-            $i = 0;
-            foreach($td as $valor){
-                $i++;
-                $dados_tipo[$i] = json_encode($valor['nome']);
-                foreach($dados_tipo as $chave => $value){
-                    $tipos[$chave] = $value;
-                }
-            }         
-        }
-        
-        $buscas = $tipos;
-    
-        //dd($buscas);
-        return view('/Restrito/default', compact("buscas","search"));
+        $balanco = $valores[0] - $valores[1];
+        return view('/Restrito/default', compact("buscas","search","valores","balanco"));
     }
     public function grafico()
     {
-        
+
     }
 }

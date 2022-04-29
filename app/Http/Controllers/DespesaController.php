@@ -72,7 +72,7 @@ class DespesaController extends Controller
             $this->despesa->store($validacao);
             return redirect('/Restrito/despesas')->with('success', 'despesa criada com sucesso');
         }
-        
+
     }
 
     /**

@@ -1,23 +1,19 @@
 @extends('layouts.app')
 @section('content')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Dashboard</h1>    
+    <h1 class="h2">Dashboard</h1>
     <p> </p>
 </div>
 <div class="row">
     <div class="col-md-12">
         <div id="container-search" class="col-md-12">
             <h3>Filtrar por suas despesas</h3>
-            <form action="/" method="GET">
-                <input type="text" id="search" name="search" class="form-control" placeholder="Procure um Evento">
+            <form action="/Restrito/default" method="GET">
+                <input type="month" id="search" name="search" class="form-control" placeholder="Procure um Evento">
+                <button type="submit" class="btn btn-primary btn-sm" title="Pesquisar">Pesquisar</button>
             </form>
         </div>
-        <div class="row cabecalho">
-            <div class="col-md-12 text-left">
-                <p>buscando por: {{ $search }}</p>
-                
-            </div>
-        </div>
+
     </div>
 </div>
 <br>
@@ -27,7 +23,9 @@
         <hr>
         <div class="inbox-wid">
             <div class="inbox-item">
-            <canvas id="myChart" width="59" height="50"></canvas>
+                <div class="chart-container" style="position: relative; ">
+                    <canvas id="myChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -45,14 +43,16 @@
 @endphp
 <script src="{{ asset('chart.js/chart.js') }}"></script>
 <script>
-  var ctx = document.getElementById('myChart').getContext('2d');
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+
   const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         labels: [ {!! implode(",", $lista) !!} ],
         datasets: [{
-            label: '# Gastos por Tipos',
-            data: [ {{ implode(",", array_keys($buscas)) }} ],
+            label: {{ $balanco }},
+            data: [ {{ implode(",", $valores) }} ],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

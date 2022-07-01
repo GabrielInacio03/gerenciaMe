@@ -44,7 +44,7 @@
         }
     }
 @endphp
-<script src="{{ asset('chart.js/chart.js') }}"></script>
+<!--<script src="{{ asset('chart.js/chart.js') }}"></script>-->
 <script>
 
     var ctx = document.getElementById('myChart').getContext('2d');

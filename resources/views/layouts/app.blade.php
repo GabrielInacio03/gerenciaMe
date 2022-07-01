@@ -53,7 +53,7 @@
         </button>
         <div class="navbar-nav">
             <div class="nav-item text-nowrap" style="display: flex;">
-                <a href="#" class="nav-link px-3">ADMINISTRADOR</a>
+                <a href="#" class="nav-link px-3">{{auth()->user()->name}}</a>
                 <a class="nav-link px-3" href="#">Sign out</a>
             </div>
         </div>

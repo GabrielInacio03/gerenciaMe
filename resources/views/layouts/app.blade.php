@@ -54,7 +54,16 @@
         <div class="navbar-nav">
             <div class="nav-item text-nowrap" style="display: flex;">
                 <a href="#" class="nav-link px-3">{{auth()->user()->name}}</a>
-                <a class="nav-link px-3" href="#">Sign out</a>
+                @auth                
+                <form action="/logout" method="POST">
+                    @csrf
+                    <a href="/logout"
+                    class="nav-link"
+                    onclick="event.preventDefault();
+                    this.closest('form').submit();">Sair</a>
+                </form>
+                             
+                @endauth
             </div>
         </div>
     </header>

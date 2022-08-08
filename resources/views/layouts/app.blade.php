@@ -52,19 +52,21 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-nav">
-            <div class="nav-item text-nowrap" style="display: flex;">
-                <a href="#" class="nav-link px-3">{{auth()->user()->name}}</a>
-                @auth                
-                <form action="/logout" method="POST">
-                    @csrf
-                    <a href="/logout"
-                    class="nav-link"
-                    onclick="event.preventDefault();
-                    this.closest('form').submit();">Sair</a>
-                </form>
-                             
-                @endauth
-            </div>
+            <div class="row">
+                <div class="nav-item text-nowrap" style="display: flex;">
+                    <a href="#" class="nav-link px-3">{{auth()->user()->name}}</a>
+                    @auth                
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <a href="/logout"
+                        class="nav-link"
+                        onclick="event.preventDefault();
+                        this.closest('form').submit();">Sair</a>
+                    </form>
+                                
+                    @endauth
+                </div>
+            </div>            
         </div>
     </header>
     <div class="container-fluid">

@@ -10,6 +10,7 @@ use DateTime;
 use App\Repositories\Contracts\ITipoDespesaRepository;
 use App\Repositories\Contracts\IDespesaRepository;
 use App\Repositories\Contracts\IReceitaRepository;
+use App\Repositories\Contracts\ICartaoRepository;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,6 +18,7 @@ class HomeController extends Controller
     public ITipoDespesaRepository $tipoDespesa;
     public IDespesaRepository $despesa;
     public IReceitaRepository $receita;
+    public ICartaoRepository $cartao;
     /**
      * Create a new controller instance.
      *
@@ -25,13 +27,15 @@ class HomeController extends Controller
     public function __construct(
         ITipoDespesaRepository $tipoDespesa,
         IDespesaRepository $despesa,
-        IReceitaRepository $receita
+        IReceitaRepository $receita,
+        ICartaoRepository $cartao
     )
     {
         $this->middleware('auth');
         $this->tipoDespesa = $tipoDespesa;
         $this->despesa = $despesa;
         $this->receita = $receita;
+        $this->cartao = $cartao;
     }
 
     /**
@@ -41,7 +45,9 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->get('search');
+        $cartaos = $this->cartao->all();
+
+        //variáveis para gráfico
         $tipos = [];
         $valores = [];
         $receitaValida= [];
@@ -50,14 +56,21 @@ class HomeController extends Controller
 
         $tipos[0] = 'Receita';
         $tipos[1] = "Despesa";
-
+        
+        //campos de pesquisa cartão e data
+        $cartaoID = request('cartao_id');
+        $search = $request->get('search');
+                
+        //select e condição
         $receitas = Receita::whereYear(
             'created_at','=', date('Y', strtotime($search)))
             ->whereMonth('created_at','=', date('m', strtotime($search)))
+            ->where('cartaoId', '=', $cartaoID)
             ->get();
         $despesas = Despesa::whereYear(
             'created_at','=', date('Y', strtotime($search)))
             ->whereMonth('created_at','=', date('m', strtotime($search)))
+            ->where('cartaoId', '=', $cartaoID)
             ->get();
 
         foreach($receitas as $item){
@@ -69,14 +82,11 @@ class HomeController extends Controller
 
         $valores[0] = $somaReceita;
         $valores[1] = $somaDespesa;
-
-        if($search){
-            //dd($valores);
-        }
+        
         $buscas = $valores;
 
         $balanco = $valores[0] - $valores[1];
-        return view('/Restrito/default', compact("buscas","search","valores","balanco"));
+        return view('/Restrito/default', compact("buscas","search","valores","balanco","cartaos"));
     }
     public function grafico()
     {

@@ -5,9 +5,12 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        @if(count($cartaos) < 1)
-            <a href="{{ url('/Restrito/cartaos/create') }}" class="btn btn-success">Novo</a>       
-        @endif        
+        <!-- 
+            @if(count($cartaos) < 1)
+                <a href="{{ url('/Restrito/cartaos/create') }}" class="btn btn-success">Novo</a>       
+            @endif  
+        -->
+        <a href="{{ url('/Restrito/cartaos/create') }}" class="btn btn-success">Novo</a>       
         @if(session()->get('success'))
         <div class="alert alert-success mt-1">
             {{ session()->get('success') }}  

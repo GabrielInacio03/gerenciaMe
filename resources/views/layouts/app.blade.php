@@ -98,6 +98,9 @@
                                 Receitas
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ URL::asset('password/reset') }}" class="nav-link">Configurações</a>
+                        </li>
                     </ul>
                 </div>
             </nav>

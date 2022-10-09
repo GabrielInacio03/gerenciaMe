@@ -50,7 +50,7 @@
                     <nav class="nav nav-masthead justify-content-center float-md-end">
                     @if(Route::has('login'))
                         @auth                        
-                            <a class="nav-link active text-light" aria-current="page" href="{{ url('/Restrito/default') }}">Home</a>
+                            <a class="nav-link active text-light" aria-current="page" href="{{ url('/Restrito/default') }}">Dashboard</a>
                         @else
                             @if(Route::has('register'))
                             <a class="nav-link" href="{{ url('login') }}">Login</a>

@@ -98,10 +98,13 @@
                                 Receitas
                             </a>
                         </li>
+<<<<<<< HEAD
                         <!--
                         <li class="nav-item">
                             <a href="{{ URL::asset('password/reset') }}" class="nav-link">Configurações</a>
                         </li>-->
+=======
+>>>>>>> parent of 812a8c1 (Tela de reset password criada, faltando ajustes)
                     </ul>
                 </div>
             </nav>

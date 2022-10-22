@@ -7,7 +7,6 @@ Route::get('/', function () {
 });
 Auth::routes();
 Route::get('/Restrito/default', 'HomeController@index')->middleware('auth');
-//Route::get('/auth/passwords/reset', 'ResetPasswordController')->middleware('auth');
 
 
 

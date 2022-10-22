@@ -65,8 +65,8 @@
            
             <main class="px-3">
                 <div class="container">
-                    <h1>Cover your page.</h1>
-                    <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+                    <h1>Página Inicial.</h1>
+                    <p class="lead">Bem vindos ao nosso sistema de gerenciamento financeiro. Faça o controle de seus gastos com mais eficácia.</p>
                     <p class="lead">
                         <a href="{{ url('/Restrito/default') }}" type="button" class="btn btn-outline-light btn-lg">Começar</a>
                     </p>
